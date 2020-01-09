@@ -1,0 +1,178 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Thin Sectioned Essay
+% LaTeX Template
+% Version 1.0 (3/8/13)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original Author:
+% Nicolas Diaz (nsdiaz@uc.cl) with extensive modifications by:
+% Vel (vel@latextemplates.com)
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[a4paper, 12pt]{article} % Font size (can be 10pt, 11pt or 12pt) and paper size (remove a4paper for US letter paper)
+\usepackage{listings}   
+\usepackage{amsmath}
+\usepackage{wrapfig} % Allows in-line images
+\usepackage{graphicx}
+\usepackage{mathpazo} % Use the Palatino font
+\usepackage[T1]{fontenc} % Required for accented characters
+\usepackage{floatrow}
+\usepackage{lmodern}
+\usepackage{graphicx}
+\usepackage{amsthm}
+\usepackage{float}
+\newtheorem*{theorem*}{Theorem}
+\newtheorem*{corollary*}{Corollary}
+\usepackage{lingmacros}
+\usepackage{subfiles}
+\usepackage{mathtools}
+\usepackage{tikz}
+\usepackage{bbm}
+\renewcommand{\thefootnote}{\Roman{footnote}}
+\linespread{1.05} % Change line spacing here, Palatino benefits from a slight increase by default
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\newtheorem*{corollary}{Corollary}
+\newtheorem*{observation}{Observation}
+\newtheorem*{remark}{Remark}
+\newtheorem*{definition}{Definition}
+\newtheorem*{property}{Property}
+\newtheorem*{goal}{Goal}
+\makeatletter
+\renewcommand\@biblabel[1]{\textbf{#1.}} % Change the square brackets for each bibliography item from '[1]' to '1.'
+\renewcommand{\@listI}{\itemsep=0pt} % Reduce the space between items in the itemize and enumerate environments and the bibliography
+
+\renewcommand{\maketitle}{ % Customize the title - do not edit title and author name here, see the TITLE block below
+\begin{flushright} % Right align
+{\LARGE\@title} % Increase the font size of the title
+
+\vspace{50pt} % Some vertical space between the title and author name
+
+{\large\@author} % Author name
+\\\@date % Date
+
+\vspace{40pt} % Some vertical space between the author block and abstract
+\end{flushright}
+}
+
+%----------------------------------------------------------------------------------------
+%	TITLE
+%----------------------------------------------------------------------------------------
+
+\title{\textbf{Ruin Theory:\\An Application of Stochastic Process}\\ % Title
+Stochastic Process: Second Project} % Subtitle
+
+\author{\textsc{Wei-Chang Lee} % Author
+\\{\textit{PROFESSOR RAOUL NORMAND}}} % Institution
+
+\date{\today} % Date
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+
+\maketitle % Print the title section
+
+%----------------------------------------------------------------------------------------
+%	ABSTRACT AND KEYWORDS
+%----------------------------------------------------------------------------------------
+
+%\renewcommand{\abstractname}{Summary} % Uncomment to change the name of the abstract to something else
+
+\begin{abstract}
+The project was originally a brief study of example 5.13 in \emph{ Rick Durrett}, Essentials of Stochastic Processes, but the assumption of this problem was somehow weird. I tried to extend the model and found that it is an interesting application of tools we taught in class, which plays a big rule in insurance pricing. {\it Risk theory}, which studies the ruin probability of an insurer with given initial reserve and some kind of premiums and claims types. And once we get the ruin probability of this insurance, insures can quantify the risk they took to decide whether they issue the insurance or come up with another income type.
+
+In this project, I will first give the formal definition of risk theory and terminology of Cram\`er-Lundberg Model.  Then, I will compute the ruin probability in infinite time horizon. Next, I will illustrate the connection between queuing theory and ruin theory. Finally, I will extend the model to have more general assumption via stochastic integral, which has a special name called perturbed risk process. And do some simulation of Cram\`er-Lundberg Model model.
+
+\end{abstract}
+
+\hspace*{5,6mm}\textit{Keywords:} Ruin theory, Queuing theory, Poisson Process, Laplace Transform, Convolution, Stochastic Integral, Pollaczek-Khinchin formula  % Keywords
+
+\vspace{30pt} % Some vertical space between the abstract and first section
+
+%----------------------------------------------------------------------------------------
+%	ESSAY BODY
+%----------------------------------------------------------------------------------------
+
+% outline
+\tableofcontents
+\setcounter{tocdepth}{1}
+
+%----------------------------------------------------------------------------------------
+%	Section 1: EMpirical Processs Theory
+%----------------------------------------------------------------------------------------
+\section{Ruin Theory}
+\subfile{section1_definition}
+
+%----------------------------------------------------------------------------------------
+%	Section 2: Gaussian Process
+%----------------------------------------------------------------------------------------
+\section{Ultimate Ruin}
+\subfile{section2_ruin_probabilities}
+
+
+%----------------------------------------------------------------------------------------
+%	Section 3: Kolmogorov-Smirov Test
+%----------------------------------------------------------------------------------------
+\section{Connection Between Queuing Theory}
+\subfile{section3_queuing}
+\section{Perturbed Risk Process }
+\subfile{section4_perturbed}
+\section{Simulation}
+\subfile{section5_simulation}
+
+\section{Acknowledgement}
+\subfile{section_acknowledgement}
+\section{Appendix}
+\subfile{section_appendix}
+%------------------------------------------------
+
+
+\bibliographystyle{plain}
+\begin{thebibliography}{9}
+\bibitem{BB}
+\emph{Tomasz Rolski }, Stochastic Processes for Insurance and Finance
+\bibitem{BB}
+\emph{Roger J. Gray }, Risk Modelling in General Insurance: From Principles to Practice
+\bibitem{BB}
+\emph{J. Janssen }, On the Interaction Between Risk and Queuing Theories
+\bibitem{BB}
+\emph{Jeremy Orloff }, Lecture Notes
+\bibitem{BB}
+\emph{Jorma Virtamo }, Lecture Notes of Queuing Theory
+\bibitem{BB}
+\emph{Rick Durrett }, Essentials of Stochastic Processes
+\bibitem{BB}
+\emph{Leda D.Minkova }, Insurance Tisk Theory
+\bibitem{BB}
+\emph{Corina D. Constantinescu }, Renewal Risk Processes with Stochastic Returns on Investments - A Unified
+Approach and Analysis of the Ruin Probabilities 
+\bibitem{BB}
+\emph{Davar Khoshnevisan }, Multi-Parameter Processes:
+An Introduction to Random Fields
+\bibitem{BB}
+\emph{William Feller }, An Introduction to Probability Theory and its Applications Volume 2
+\bibitem{BB}
+\emph{Ronald W. Wolff }, Poisson Arrivals See Time Averages 
+\bibitem{BB}
+\emph{Ivo Adan}, Eindhoven University of Technology, Block Queueing Theory and Simulation, lecture notes
+\bibitem{BB}
+\emph{Randolph Nelson }, Probability, Stochastic Processes, and Queueing Theory
+The Mathematics of Computer Performance Modeling
+\bibitem{BB}
+\emph{Ward Whitt }, A review of L=$\lambda W$ and extensions 
+\end{thebibliography}
+
+
+
+\end{document}

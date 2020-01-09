@@ -1,0 +1,189 @@
+\documentclass[project2.tex]{subfiles}
+\begin{document}
+\paragraph{}
+Ruin theory focuses on how to compute the ruin probability, that is to say, the insurer has how much chance to lose all of his initial reserve before certain time point under pre-defined structure of income and outcome flows. We will first study the money flow structure providing by Durrett in example 5.13 and fix it to the well-known Cram\`er Lundberg model.
+\subsection{Original question}
+\paragraph{}
+Let $S_n$ be the total total assets of the insurer at year n and C be the fixed amount of premiums (money earns from insuree) in every year and  $Y_i$ be the amount of claims (money pays to insuree) in $i$th year. Then, we have
+$$S_n=S_{n-1}+C-Y_n$$ which is the insurer's asset at the end of year i. We further let $$X_n=C-Y_n$$ where $X_1, X_2, ..., X_n$ be the deficit of insurer in every year. We assume \{$X_n$\} are i.i.d. following N($\mu,\sigma^2$) and $S_0$ is the initial reserve greater than zero.
+\paragraph{}
+We want to show that the probability of event B, which the insurer becomes insolvency at some time n has an exponential bound
+$$P(B)\leq e^{-2\mu S_0 / \sigma^2}$$
+\begin{proof}
+Let T=inf\{n: $S_n\leq0$\} which is the stopping time of the insurer first reaches bankrupt. We find that the event B is actually \{T<$\infty$\} so we try to construct a martingale to study the behaviour of stopping time.
+\begin{theorem}
+Consider a random walk \{$S_n$\}, $S_n=\sum_{i=1}^nX_i$ and  $\hat{m}_X(s)$ is finite for some $s\in R$, then  \{$M_n$\} given by $M_n=e^{sS_n}(\hat{m}_X(s))^{-n}$ is an $\{\mathcal{F}^X_n\}$ martingale.   
+\end{theorem}
+\begin{proof}
+\begin{align*}
+E[M_{n+1}|\mathcal{F}^X_n]&=\frac{E(e^{sS_n}e^{X_{n+1}}|\mathcal{F}^X_n)}{\hat{m}_X(s)^{n+1}}=\frac{e^{sS_n}E(e^{X_{n+1}}|\mathcal{F}^X_n)}{\hat{m}_X(s)^{n+1}}\\
+&=\frac{e^{sS_n}E(e^{X_{n+1}})}{\hat{m}_X(s)^{n+1}}=\frac{e^{sS_n}}{\hat{m}_X(s)^{n}}=M_n
+\end{align*}
+\end{proof}
+We now know that $M_n=e^{sS_n}(\hat{m}_X(s))^{-n}$ is an $\{\mathcal{F}^X_n\}$ martingale. If we further let $\hat{m}_X(s)=1$ we will have a martingale $e^{\gamma S_n}$ which looks like the right-hand side of desired result and $\gamma$ is the solution of equation $\hat{m}_X(s)=1$. Since m.g.f of normal distribution is $$\hat{m}_X(s)=e^{\mu s+\frac{\sigma^2 s^2}{2}}$$ We can find that $\gamma$ equals $-2\mu/\sigma^2$ and $e^{ -2\mu/\sigma^2 S_n}$ is a martingale so
+\begin{align*}
+E[M_0] &= E[M_{T\wedge n}] =E[e^{-2 \mu S_{T\wedge n}/  \sigma^2}]\\
+&=E[M_T;T\leq n]+E[M_n;T>n]\\
+&\geq e^{-2 \mu S_{T}/  \sigma^2} \times P(T\leq n)\\
+&\geq P(T\leq n)
+\end{align*}
+By {\it monotone convergence theorem},
+$$P(B)=P(T<\infty)=\lim_{n \to \infty} P(T\leq n)\leq E[M_0]=e^{ -2\mu S_0/\sigma^2 }$$
+\end{proof}
+
+The result implies that the failure probability decreases exponentially fast as initial reserve grows linearly which does not violate the intuition that you will have more chance to win if you have more money at first. But the assumption of deficit process $\{X_n\}$ being N($\mu,\sigma^2$) will make the claim process $\{Y_n\}$ becomes N($C-\mu,\sigma^2$) which can take values in $R^-$ which violates the definition of claim. We should change the underlying distribution function of deficit process or come up with a more general way to compute the ruin probability besides setting them normal. 
+
+\subsection{Risk processes}
+\paragraph{}
+To give a more general model, we will first rewrite the situation of insurer faced in more explicit way and give definitions of some important terminology.
+\subsubsection{Definition of the model}
+\paragraph{}
+To define a risk process, we have to give the time and size at which the claims occurred and the rate that the insurer collects premiums.
+\begin{definition}
+Risk model
+\end{definition}
+\begin{itemize}
+ \item  random epochs $\sigma_1,\sigma_2,...$with $0=\sigma_0<\sigma_1<\sigma_2...$at which the claims occur, where the random variables $\sigma_n$ can be discrete or continuous.
+ \item  the corresponding inter-arrival times \{$T_n$\} and claim sizes \{$U_n$\} where $T_i$ be the time difference between two claims $\sigma_{i-1}$ , $\sigma_{i}$ and $U_i$ be the amount of money that insure had to pay when the claims occurred at $\sigma_i$. $U_i$ is non-negative.
+ \item the initial reserve of the insurer is u $\geq0$.
+ \item B(t) is the total amount of the premiums up to time t, which influenced by the risk insurer took.
+ \item We ignore all expenses and other influences.
+ \end{itemize}
+
+\paragraph{}
+To study the behaviour of the risk model at time n, we first need to find out the amount of arriving claims in the interval (0,t], and it is a {\it counting process} \{N(t), t$\geq 0$\} given by $$N(t)=\sum^{\infty}_{k=1} \mathbbm{1}(\sigma_k \leq t)$$ so the aggregate money that insurer had to pay in (0,t] forms the {\it cumulative arrival process} \{X(t), t$\geq 0$\} $$X(t)=\sum^{\infty}_{k=1}U_k \mathbbm{1}(\sigma_k \leq t)=\sum^{N(t)}_{k=1}U_k\hspace{5pt}(\sum_{k=1}^0 \overset{def}{=}0)$$
+\paragraph{}
+After figuring out the behaviour of claims, it is easy to define the {\it risk reserve process} \{R(t), t$\geq 0$\} which represents the money insurer has at time t $$R(t)=u+ B(t)-\sum^{N(t)}_{k=1}U_i$$ while the {\it claim surplus process}  \{S(t), t$\geq 0$\}  represents the total deficit till time t $$S(t)=\sum^{N(t)}_{k=1}U_i-B(t)$$.  
+\begin{observation}
+time of ruin $\tau (u)=inf\{t: R(t)<0\}=inf\{t:S(t)>u\}$ is the first epoch when the risk reserve process becomes negative or,equivalently, when the claim surplus process cross the level u.
+\end{observation}
+Finally, we can define the probability that we interested in.
+\begin{definition}
+Ruin probability
+\end{definition}
+\begin{itemize}
+\item {\it finite-horizon ruin probability} $\varphi (u;x)=P(\tau (u)\leq x)$.
+\item {\it infinite-horizon ruin probability or ultimate ruin} $\varphi (u)=\lim_{x \to \infty}\varphi (u;x)=P(\tau (u)< \infty)$.
+\item {\it survival probability} $\bar{\varphi}(u)=1-\varphi(u)$.
+\end{itemize}
+\subsubsection{Compound Distribution}
+\paragraph{}
+The structure of X(t)=$\sum^{N(t)}_{k=1} U_i$ has a special name called {\it compound process} which is the major cornerstone of ruin theory.
+\begin{definition}
+Compound distributions \\
+Let N be a non-negative integer-valued random variable and $U_1,U_2,...$ a sequence of non-negative random variables. Then the random variable
+\begin{equation}
+X = \left\{
+\begin{array}{lcl}
+\sum^{N}_{i=1} U_i  &if N\geq 1,\\
+ 0 &if N=0,\\
+\end{array} 
+\right.
+\end{equation}
+is called the compound distribution. We further assume $N,U_1,U_2,...$ are independent and $U_1,U_2,...$ are identically distributed.
+\end{definition}
+\begin{theorem}
+The distribution of X is given by $$F_X=\sum_{k=0}^{\infty}p_kF^{*k}_{U},$$ where $F^{*k}_{U}$ denotes the k-fold convolution of $F_U$ which is the distribution function of $U_i$ and $p_k=P(N=k)$.
+\end{theorem}
+\begin{proof}
+Conditioning on N, we have $$F_X(x)=P(X\leq x)=\sum^{\infty}_{k=0}P(X\leq x|N=k)p_k$$
+since N=0 implies X=0, we have $$P(X\leq x|N=0)=1_{[0,\infty )}(x)=F^{*0}_{U}(x)$$ and for k$\geq 1$,we have $$P(X\leq x|N=k)=P(U_1+U_2+...+U_k\leq x)=F^{*k}_{U}(x)$$
+so that $$F_X=F^{*0}_{U}p_0+\sum_{k=1}^{\infty}p_kF^{*k}_{U}=\sum_{k=0}^{\infty}p_kF^{*k}_{U}$$
+\end{proof}
+\begin{theorem}
+For each s $\geq 0$,$$\hat{l}_X(s)=\hat{g}_N(\hat{l}_U(s))$$
+where $\hat{l}_X(s)$ is the Laplace-Stieltjes transform of X and $\hat{g}_N(s)$ is the generating function of N.
+\end{theorem}
+\begin{proof}
+\begin{align*}
+E[e^{-s\sum_{i=1}^N U_i}]&=\sum_{k=0}^{\infty}E[e^{-s\sum_{i=1}^N U_i}|N=k]P(N=k)\\
+&=\sum_{k=0}^{\infty}E[e^{-s\sum_{i=1}^k U_i}]P(N=k)\\
+&=\sum_{k=0}^{\infty}E[\prod_{i=1}^ke^{-s U_i}]P(N=k)\\
+&=\sum_{k=0}^{\infty}E[e^{-s U}]^kP(N=k)=\hat{g}_N(E[e^{-s U}])
+\end{align*}
+\end{proof}
+\begin{corollary}
+Assume that the relevant second moments exist. Then
+$$E[X]=E[N]E[U],\hspace{5pt}Var[X]=Var[N]E[U]^2+E[N]Var[U]$$
+\end{corollary}
+\begin{proof}
+$$E[X]=-d/ds \hat{l}_X(s)|_{s=0+}=\hat{g}^{(1)}_N(1)\hat{l}^{(1)}_U(0+)$$
+\begin{align*}
+E[X^2]=-d^2/ds^2 \hat{l}_X(s)|_{s=0+}&=\hat{g}^{(1)}_N(1)\hat{l}^{(2)}_U(0+)+\hat{g}^{(2)}_N(1)(\hat{l}^{(1)}_U(0+))^2\\
+&=E[N][U^2]+E[N(N-1)]E[U]^2\\
+&=E[N^2]E[U]^2+E[N](E[U^2]-E[U]^2)\\
+&=E[N^2]E[U]^2+E[N]Var[U]
+\end{align*}
+$$Var[X]=E[X^2]-E[X]^2=Var[N]E[U]^2+E[N]Var[U]$$
+\end{proof}
+There are especially two cases of compound distributions that we are interested in.
+\begin{definition}
+\end{definition}
+\begin{itemize}
+\item {\it Compound Poisson distribution} , where N has Poisson distribution determined by $\lambda$ , characterizing as ($\lambda,F_U$).
+\item {\it Compound pascal/negative-binomial distribution} where N has negative binomial distribution $NB(\alpha,p)$ , characterizing as ($\alpha,p,F_U$).
+\end{itemize}
+Special case $\alpha=1$ of {\it compound negative binomial  distribution} is called {\it compound  geometric distribution} which plays a big part in calculating the infinite-horizon ruin probability.
+\begin{corollary}
+if X follows compound geometric distribution with $s\geq 0$
+$$\hat{l}_X(s)=\frac{p\cdot\hat{l}_U(s)}{1-(1-p)\cdot\hat{l}_U(s)}
+$$
+\end{corollary}
+\begin{proof}
+We can directly use the result of {\it Theorem 3.}
+\begin{align*}
+\hat{l}_X(s)=\hat{g}_N(\hat{l}_U(s))=&\sum^{\infty}_{k=0}\hat{l}_U(s)^kP(N=k)\\
+&=0+\sum^{\infty}_{k=1}\hat{l}_U(s)^kp(1-p)^{k-1}\\
+&=p\cdot\hat{l}_U(s)\sum^{\infty}_{k=1}\hat{l}_U(s)^{k-1}(1-p)^{k-1}\\
+&=\frac{p\cdot\hat{l}_U(s)}{1-(1-p)\cdot\hat{l}_U(s)}
+\end{align*}
+\end{proof}
+\subsubsection{Cram\`er-Lundberg Model}
+\paragraph{}
+The most well-known risk model is called the {\it Cram\`er-Lundberg Model} or classical risk model, which takes additional assumption besides risk model mentioned above for calculating the ruin probabilities. In section 2 and 3, we will study the time of ruin under this model.
+\begin{definition}
+Additional Assumption
+\end{definition}
+\begin{itemize}
+\item Premiums B(t)=$\beta t$ is just a linear function of time t with a positive constant $\beta$ which is called {\it gross risk premium rate}.
+\item $F_U$ has mean $\mu$ and variance $\sigma^2$,  $F_U(0)=0$.
+\item The inter-arrival time \{$T_n$\} are i.i.d. exponentially distributed with mean=$\lambda^{-1}$.
+\end{itemize}
+\begin{observation}
+The third assumption is equivalent to a Homogenious Poisson Process with intensity $\lambda$ and then counting process N(t) follows Poisson($\lambda t$) so the cumulative claim process X(t) is a compound Poisson process.Thus the Cram\`er-Lundberg Model is also called the compound Poisson model.
+\end{observation}
+\begin{remark}
+The compound Poisson process is just like compound Poisson distribution but now N changes to N(t) and have distribution Poisson($\lambda$t).
+\end{remark}
+\subsection{Limiting behaviour}
+\paragraph{}
+In infinite-horizon ruin probabilities case, we can modify the claim surplus process to a random walk to study the limiting behaviour of it since ruin can occur only at claim times.
+\begin{align*}
+\varphi(u)&=P(u+\beta\sigma_n-X(\sigma_n)\leq 0, n\geq 1)\\
+&=P(u+\sum^n_{k=1}(\beta T_k-U_k)\leq 0, n\geq 1)\\
+&=P(sup_{n\geq 1}\sum^n_{k=1}(U_k-\beta T_k)\geq u)\\
+\end{align*}
+With: $S'_k=U_k-\beta T_k, W_n=\sum^n_{k=1}S'_k$ and $$M=sup_{n\geq 1}\sum^n_{k=1}S'_k=sup_{n\geq 1}W_n$$
+$$\varphi(u)=P(M>u)$$
+\begin{lemma}
+\begin{align*}
+\varphi(u)=1\hspace{30pt} if \hspace{3pt}  E[S'_i]\geq 0,\\
+\varphi(u)<1\hspace{30pt} if \hspace{3pt}  E[S'_i]<0,
+\end{align*}
+\end{lemma}
+\begin{proof}
+For $E[S'_i]$>0, from strong law of large number we have
+$$W_n/n \overset{a.s.}{\rightarrow} E[S'_i]\quad as\quad n\rightarrow\infty $$
+Then it follows that
+$$\lim_{n\rightarrow\infty}W_n=\infty$$ 
+So $M=sup_{n>=1}W_n$ can not smaller than any finite positive number u so we have $\varphi(u)=P(M>u)=1$ , and for $E[S'_i]$<0 we have $W_n$ analogously
+$$\lim_{n\rightarrow\infty}W_n=-\infty$$ 
+$M=sup_{n>=1}W_n$ can not always greater than any finite positive number u so we have $\varphi(u)=P(M>u)<1$.\\
+For the $E[S'_i]$=0, recalled that this random walk $W_n$ is recurrent at origin and has positive probability to reach u+c from origin (c>0)\footnote{More details and proofs about recurrence can be found in Multi-Parameter Processes:
+An Introduction to Random Fields, Davar Khoshnevisan, chapter3}. We have $$P(W_n=0\quad i.o.)=P(W_n=u+c\quad i.o.)=1$$ So $\varphi(u)=P(M>u)=1$
+\end{proof}
+\begin{observation}It is only meaningful to compute ruin probabilities under $E[S'_i]<0$ since not only does it be smaller than one but also suggest premium is greater that claim in that epoch.We have $$E[S'_i]=E[U_i-\beta  T_i]=\mu -\beta \lambda^{-1}<0$$ $$\beta >\lambda\mu$$ 
+Define the {\it safety loading coefficient} $\theta$ by
+$$\theta=\frac{\beta}{\lambda\mu}-1$$If $\theta>0,E[S'_i]=-\mu\theta<0$ we say it satisfies the net profit condition (NPC)
+\end{observation}
+\end{document}

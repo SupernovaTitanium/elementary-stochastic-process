@@ -1,0 +1,54 @@
+\documentclass[project2.tex]{subfiles}
+\begin{document}
+
+\subsection{Properties}
+
+\begin{definition}[Gaussian Process]
+A Gaussuan process $\{X_t,t\in T\}$ is a stochastic process that any finite linear combination of samples has a joint Gaussian distribution.
+\end{definition}
+The most common example is the Brownian motion $\{B_t,t\in T\}$. It starts from 0 with probability 1. The variance is $t$ and the covariance between $B_t$ and $B_s$ is $t\wedge s$.
+\paragraph{}
+One of the most important property of Gaussian process is that a the behaviour of a Gaussian process is fully determined by its mean and covariance function.
+\begin{property}[Uniqueness Property]
+The covariance function of a Gaussian process completely determine its behaviour.
+\end{property}
+In the proof of Donsker theorem, we will apply this result to identify the behaviour of the statistics that we are desired. As a little remark, to prove this property, you can consider the characteristic function of the Gaussian process then you will find something interesting.
+
+\subsection{Brownian Bridge}
+
+\paragraph{}
+Brownian bridge is one the the common Gaussian process in real life. It is obtained by taking a standard Brownian motion restricted on [0, 1] and conditioning on the event that $X_0 = X_1=0$. This definition gives us an intuition about the distribution of a Brownian bridge. First, we can see that the future of the Brownian bridge is not independent to the past. Moreover, with this operational definition, we can have a picture about why this process is called {\it bridge}.
+
+Before introducing you more properties about Brownian bridge, let's take a look at its formal definition in advance.
+
+\begin{definition}
+A Brownian Bridge is a Gaussian process with covariance function	$Cov(X_s,X_t)=s\wedge t-st$.
+\end{definition}
+
+\paragraph{}
+As you can see, Brownian bridge is strongly related to Brownian motion. And actually, they can generate each other!That is, given a Brownian motion, then you can construct a Brownian bridge and vice versa.
+
+In the following we will list some constructions of Brownian bridge via Brownian motion without proving it since they are not very important for our goal: Donsker theorem. 
+
+\begin{property}[Construction of Brownian Bridge]
+Suppose $\mathbf{Z} = \{Z_t: t\in[0,1]\}$ is a standard Brownian motion on [0,1]. Then $\mathbf{X} = \{X_t:t\in [0,1]\}$ is a Brownian bridge if one of the following is true
+\begin{enumerate}
+\item $X_t = Z_t-tZ_1$ \\
+\item $X_t = (1-t)Z(\frac{t}{1-t})$ \\
+\item $X_t = (1-t)\int^t_0 \frac{1}{1-s}dZ_s$ \\
+\item $dX_t=\frac{X_t}{1-t}dt + dZ_t$
+\end{enumerate}
+\end{property}
+To verify the above constructions, you can simply check that the covariance function of $X_t$ and $X_s$ is $t\wedge s - ts$.
+
+\paragraph{}
+Next, let's consider the distribution of the supremum of Brownian bridge.
+\begin{property}[Supremum of Brownian bridge]
+Let $\mathbf{X}=\{X_t:t\in[0,1]\}$ be a Brownian bridge and $S^+ = \sup_{0\leq t\leq 1}X(t)$ and $S = \sup_{0\leq t\leq 1}|X(t)|$. Then,
+\begin{enumerate}
+\item $F(S^+ \leq x) = 1-\exp(-2x^2)$\\
+\item $F(S\leq x) = 1 + 2\sum^{\infty}_{k=1}(-1)^k\exp(-2k^2x^2)$
+\end{enumerate}
+\end{property}
+
+\end{document}

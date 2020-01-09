@@ -1,0 +1,26 @@
+\documentclass[final_project_1.tex]{subfiles}
+\begin{document}
+\subsection{Properties}
+\begin{definition}[Gaussian Process]
+A Gaussuan process $\{X_t,t\in T\}$ is a stochastic process that any finite linear combination of samples has a joint Gaussian distribution.
+\end{definition}
+
+\paragraph{}
+The most common example is the Brownian motion $\{B_t,t\in T\}$. The variance of $B_t$ is $t$ and the covariance between $B_t$ and $B_s$ is $t\wedge s$.
+
+\paragraph{}
+One of the most important property of Gaussian process is that a the behaviour of a Gaussian process is fully determined by its covariance function.
+\begin{property}
+The covariance function of a Gaussian process completely determine its behaviour.
+\end{property}
+This property is very important. In the proof of Donsker theorem, we will apply this result to identify the behaviour of the statistics that we are desired.
+
+As a remark, to prove this property, you can consider the characteristic function of the Gaussian process then you will find something interesting.
+
+\subsection{Brownian Bridge}
+\begin{theorem}
+A Brownian Bridge is a Gaussian process with covariance function	
+\end{theorem}
+
+
+\end{document}

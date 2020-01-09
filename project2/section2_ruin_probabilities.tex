@@ -1,0 +1,134 @@
+\documentclass[project2.tex]{subfiles}
+\begin{document}
+We have all the properties that we need to calculate the ruin probabilities now. We will start from solving integral equation to derive the famous Pollaczeck-Khinchine formula and give a more general result to the example 5.13.
+\subsection{Integral equation of ultimate ruin}
+\paragraph{}
+Since the Poisson process is a renewal process and since ruin cannot occur before the first claim arrival $T_1$, then the the survival probability $\bar{\varphi}(u)$ conditioning on no claim in (0,$T_1$) satisfies following relation:
+\begin{align*}
+\bar{\varphi}(u)=&E[\bar{\varphi}(u+\beta T_1-U_1)]\\
+&=\int_0^{\infty}\lambda e^{-\lambda s}\int_0^{u+\beta s}\bar{\varphi}(u+\beta s-z)dF_U(z)ds\\
+&=\frac{\lambda}{\beta}e^{\lambda\frac{u}{\beta}}\int_u^{\infty}e^{-\lambda \frac{x}{\beta}}\int_0^{x}\bar{\varphi}(x-z)dF_U(z)dx\\
+\end{align*}
+and since  $\bar{\varphi}(u)$ is differentiable  \footnote{The discussion of differentiability can be found in both Renewal Risk Processes with Stochastic Returns on Investments - A Unified
+Approach and Analysis of the Ruin Probabilities section 2.2 and Stochastic Processes for Insurance and Finance p.163} we have
+$$\bar{\varphi}'(u)=\frac{\lambda}{\beta}\bar{\varphi}(u)-\frac{\lambda}{\beta}\int^u_0\bar{\varphi}(u-z)dF_U(z)$$
+\begin{theorem}
+The ruin function satisfies 
+$$\beta\varphi(u)=\lambda(\int_{u}^{\infty}\bar{F}_U(x)dx+\int_{0}^{u}\varphi(u-x)\bar{F}_U(x)dx)$$ and
+$$\varphi(0)=\frac{\lambda u}{\beta},\varphi(\infty)=0$$
+If $F_U(x)$ are exponentially distributed with mean $\mu$
+$$\varphi(u)=\frac{1}{1+\theta}e^{-\frac{\theta u}{\mu(1+\theta)}}$$
+\end{theorem}
+\begin{proof}
+By integrating (0,u] leads to
+\begin{align*}
+\frac{\beta}{\lambda}(\bar{\varphi}(u)-\bar{\varphi}(0))&=\frac{1}{\lambda}\int_{0}^{u}\beta\bar{\varphi}'(x)dx\\
+&=\int^{u}_{0}\bar{\varphi}(x)dx-\int^{u}_{0}dx\int^{x}_{0}\bar{\varphi}(x-y)dF_U(y)\\
+&=\int^{u}_{0}\bar{\varphi}(x)dx-\int^{u}_{0}dF_U(y)\int^{u}_{y}\bar{\varphi}(x-y)dx\\
+&=\int^{u}_{0}\bar{\varphi}(x)dx-\int^{u}_{0}dF_U(y)\int^{u-y}_{0}\bar{\varphi}(x)dx\\
+&=\int^{u}_{0}\bar{\varphi}(x)dx-\int^{u}_{0}dx\int^{u-x}_{0}\bar{\varphi}(x)dF_U(y)\\
+&=\int^{u}_{0}\bar{\varphi}(x)(1-F_U(u-x))dx\\
+&=\int^{u}_{0}\bar{\varphi}(u-x)\bar{F}_U(x)dx\\
+\end{align*}
+Now letting u $\rightarrow\infty$,we have
+$$\beta(\bar{\varphi}(\infty)-\bar{\varphi}(0))=\lambda\lim_{u\rightarrow\infty}\int^{u}_{0}\bar{\varphi}(u-x)\bar{F}_U(u-x)dx$$
+From net profit condition, we know $\lim_{n\rightarrow\infty}W_n=-\infty$ and $F_U(\infty)=0$ so M can only take on finite positive number, we have $$\bar{\varphi}(\infty)=1$$
+Then by applying {\it Dominated convergence theorem} to the right-hand side we get,
+$$\beta(1-\bar{\varphi}(0))=\lambda\int^{\infty}_{0}1\cdot\bar{F}_U(u-x))dx=\lambda\mu\footnote{Essential for Stochastic Process P.220 $E[X]=\int_0^\infty P(X>t)dt$}$$
+Thus,
+$$\bar{\varphi}(0)=1-\frac{\lambda\mu}{\beta}$$
+By changing $\bar{\varphi}(u)$ to $1-\bar{\varphi}(u)=\varphi(u)$,
+\begin{align*}
+\beta\varphi(u)&=\beta\varphi(0)-\lambda\int_{0}^{u}(1-\varphi(u-x))\bar{F}_U(x)dx\\
+&=\lambda\mu-\lambda\int_{0}^{u}\bar{F}_U(x)dx+\lambda\int_{0}^{u}\varphi(u-x)\bar{F}_U(x)dx\\
+&=\lambda(\int_{u}^{\infty}\bar{F}_U(x)dx+\int_{0}^{u}\varphi(u-x)\bar{F}_U(x)dx
+\end{align*}
+If $F_U(x)$ are exponentially distributed , $\bar{\varphi}(u)$ will satisfies this ODE $$\bar{\varphi}''(u)+\frac{1}{\mu}\frac{\theta}{1+\theta}\bar{\varphi}'(u)=0$$ and the initial conditions $$\bar{\varphi}(\infty)=1\quad and \quad \bar{\varphi}(0)=1-\frac{\lambda\mu}{\beta}=\frac{\theta}{1+\theta}$$
+gives the solution
+$$\varphi(u)=1-\bar{\varphi}(u)=\frac{1}{1+\theta}e^{-\frac{\theta u}{\mu(1+\theta)}}$$
+\end{proof}
+\subsection{Pollaczeck-Khinchine formula}
+\paragraph{}
+In this section, we will use Laplace transform to show that $\bar{\varphi}(u)$ is actually compound geometric distributed to give the general n-fold solution to it .
+\begin{theorem}Pollaczeck-Khinchine formula
+$$\varphi(u)=(1-\frac{\lambda\mu}{\beta})\sum^{\infty}_{n=1}(\frac{\lambda\mu}{\beta})^n(1-(F_U^I)^{*n}(u))$$
+with $F_U^I$ is the intergrating tail distribution related to $F_U$ denoted by,
+$$F_U^I(z)=\frac{1}{\mu}\int_0^z(1-F_U(x))dx$$ and density
+$$f_U^I(z)=\frac{1}{\mu}\bar{F}_U(z)$$
+\end{theorem}
+\begin{proof}
+Taking Laplace transform of $\varphi(u)=\frac{\lambda}{\beta}(\int_{u}^{\infty}\bar{F}_U(x)dx+\int_{0}^{u}\varphi(u-x)\bar{F}_U(x)dx)$ 
+we get,
+\begin{align*}
+\hat{L}_{\varphi}(s)&=\int^{\infty}_{0}\varphi(u)e^{-su}du\\
+&=\frac{\lambda}{\beta}\int^{\infty}_{0}[\int_{u}^{\infty}\bar{F}_U(x)dx+\int_{0}^{u}\varphi(u-x)\bar{F}_U(x)dx]e^{-su}du\\
+&=\frac{\lambda}{\beta}\int^{\infty}_{0}(\mu-\int_{0}^{u}\bar{F}_U(x)dx)e^{-su}du+\frac{\lambda}{\beta}\int^{\infty}_{0}(\int_{0}^{u}\varphi(u-x)\mu f_U^I(x)dx)e^{-su}du\\
+&=\frac{\lambda\mu}{\beta}\int^{\infty}_{0}(1-F^I_U(u))e^{-su}du+\frac{\lambda\mu}{\beta}\hat{L}_{\varphi}(s)\hat{L}_{f_U^I}(s) \footnotemark\\
+&=\frac{\lambda\mu}{\beta}\hat{L}_{1-F^I_U}(s)+\frac{\lambda\mu}{\beta}\hat{L}_{\varphi}(s)\hat{L}_{f_U^I}(s)\\
+&=\frac{\lambda\mu}{\beta}\frac{1-\hat{L}_{f_U^I}(s)}{s}+\frac{\lambda\mu}{\beta}\hat{L}_{\varphi}(s)\hat{L}_{f_U^I}(s) \footnotemark\\
+\end{align*}
+\addtocounter{footnote}{-1}
+\footnotetext{An Introduction to Probability Theory and its Applications Volume 2 p.434 , f(x),g(x) and u(x) their convolutions $u(x)=\int_0^xg(x-y)f(y)dy$, their Laplace transform satisfies $\hat{L}_u(s)=\hat{L}_f(s)\hat{L}_g(s)$ if all exists.}
+\stepcounter{footnote}
+\footnotetext{An Introduction to Probability Theory and its Applications Volume 2 p.435 2.7, F(x) and f(x) be cumulative and density function of a random variable respectively, then $\hat{L}_{1-F}(s)=\frac{1-\hat{L}_f(s)}{s} $}
+
+Thus, by rearranging the equation
+\begin{align*}
+\hat{L}_{\varphi}(s)&=\frac{1}{s}\frac{\lambda\mu}{\beta}\frac{1-\hat{L}_{f_U^I}(s)}{1-\frac{\lambda\mu}{\beta}\hat{L}_{f_U^I}(s)}\\
+&=\frac{1}{s}\frac{\lambda\mu}{\beta}(\frac{1-\hat{L}_{f_U^I}(s)}{1-\frac{\lambda\mu}{\beta}\hat{L}_{f_U^I}(s)}-1+1)\\
+&=\frac{1}{s}\frac{\lambda\mu}{\beta}(\frac{\frac{\lambda\mu}{\beta}\hat{L}_{f_U^I}(s)-\hat{L}_{f_U^I}(s)}{1-\frac{\lambda\mu}{\beta}\hat{L}_{f_U^I}(s)}+1)\\
+&=\frac{1}{s}\frac{\lambda\mu}{\beta}(1-\frac{(1-\frac{\lambda\mu}{\beta})\hat{L}_{f_U^I}(s)}{1-\frac{\lambda\mu}{\beta}\hat{L}_{f_U^I}(s)})\\
+\end{align*}
+Within the parentheses, it is actually the Laplace transform of compound geometric distribution G with density g \footnote{Theorem 3, second corollary, and Laplace-Stieltjes transform is actually Laplace transform but focus on cumulative function not density function} characterizing as $(1-\frac{\lambda\mu}{\beta},F_U^I)$
+\begin{align*} 
+\hat{L}_{\varphi}(s)&=\frac{\lambda\mu}{\beta}\frac{1-\hat{L}_{g}(s)}{s}\\
+&=\frac{\lambda\mu}{\beta}\hat{L}_{\bar{G}}(s)\\
+&=\int_0^\infty e^{-su}\frac{\lambda\mu}{\beta}\bar{G}(u)du
+\end{align*}
+And since the Laplace transform is unique\footnote{An Introduction to Probability Theory and its Applications Volume 2 p.430, Distinct probability distributions has distinct Laplace transforms}, it implies that $\varphi(u)$ has the same distribution as $\frac{\lambda\mu}{\beta}\bar{G}(u)$
+\begin{align*}
+\varphi(u)&=\frac{\lambda\mu}{\beta}\bar{G}(u)\\
+&=\frac{\lambda\mu}{\beta}(1-\sum_{n=1}^{\infty}(1-\frac{\lambda\mu}{\beta})(\frac{\lambda\mu}{\beta})^{n-1}(F_U^I)^{*n}(u))\footnotemark\\
+&=\frac{\lambda\mu}{\beta}(\sum_{n=1}^{\infty}(1-\frac{\lambda\mu}{\beta})(\frac{\lambda\mu}{\beta})^{n-1}-\sum_{n=1}^{\infty}(1-\frac{\lambda\mu}{\beta})(\frac{\lambda\mu}{\beta})^{n-1}(F_U^I)^{*n}(u))\\
+&=(1-\frac{\lambda\mu}{\beta})\sum^{\infty}_{n=1}(\frac{\lambda\mu}{\beta})^n(1-(F_U^I)^{*n}(u))\\
+\end{align*}
+\addtocounter{footnote}{-1}
+\footnotetext{Applying theorem 2 and setting $p_0=0$}
+Since the strong connection between ruin theory and queing theory, the equation is actually equivalent to the well-known waiting time distribution Pollaczeck-Khinchine formula and thus has the same name.  
+\end{proof}
+\subsection{Martingale Approximation}
+The explicit expression of Pollaczeck-Khinchine formula is sometimes to hard to compute. Thus, we use the same martingale technique as section 1.1 to give the exponential bound of ultimate ruin. 
+\begin{theorem}Lundberg inequality
+$$\varphi(u)\leq e^{-Lu}$$ where L is called the Lundberg exponent, the positive solution of $\lambda(\hat{m}_U(s)-1)-\beta s=0$.
+\end{theorem}
+\begin{proof}
+We first construct a martingale for the {\it risk reserve process} R(t), s,t>0
+\begin{align*}
+E[e^{-sR(t)}]&=E[e^{-s(u+\beta t-X(t))}]=E[e^{s(X(t))}]e^{-s(u+\beta t)}\\
+&=e^{-s(u+\beta t)}E[e^{s(U_1+U_2+...+U_{N(t)})}]\\
+&=e^{-s(u+\beta t)}\sum_{k=0}^{\infty}(E[e^{s(U_1+U_2+...+U_k})]P(N(t)=k))\\
+&=e^{-s(u+\beta t)}\sum_{k=0}^{\infty}(E[e^{sU}]^k\frac{(\lambda t)^k}{k!}e^{-\lambda t})\\
+&=e^{-s(u+\beta t)}e^{-\lambda t}\sum_{k=0}^{\infty}(\hat{m}_U(s)^k\frac{(\lambda t)^k}{k!})\\
+&=e^{-s(u+\beta t)}e^{-\lambda t}\sum_{k=0}^{\infty}\frac{(\hat{m}_U(s)\lambda t)^k}{k!}\\
+&=e^{-s(u+\beta t)}e^{-\lambda t}e^{\hat{m}_U(s)\lambda t}\\
+&=e^{-su+(\lambda(\hat{m}_U(s)-1)-\beta s)t}\\
+&=e^{-su+g(s)t}\\
+\end{align*}
+Recall the definition of ruin, $$\tau(u)=inf\{t\geq 0:S(t)>u\}$$ Obviously $\tau(u)$ is a $\mathcal{F}^S_t$ stopping time. Put $$M_t=\frac{e^{-r(R(t))}}{e^{g(r)t}}$$ For $0\leq s\leq t$,we have
+\begin{align*}
+E[M_t|\mathcal{F}^S_s]&=E[\frac{e^{-r(u+\beta t-X(t))}}{e^{g(r)t}}|\mathcal{F}^S_s]\\
+&=E[\frac{e^{-r(u+\beta s-X(s)))}}{e^{g(r)s}}\frac{e^{-r(\beta t-X(t)-\beta s+X(s))}}{e^{g(r)(t-s)}}|\mathcal{F}^S_s]\\
+&=M_s\cdot E[\frac{e^{-r(\beta t-X(t)-\beta s+X(s))}}{e^{g(r)(t-s)}}|\mathcal{F}^S_s]\\
+&=M_s
+\end{align*}
+So $M_t$ is a martingale so we can apply the same method of section 1.1 to calculate the exponential bound of ultimate ruin. Further let L be the positive solution of g(s)=0, we know $M'(t)=e^{-LR(t)}$ is still a martingale.
+\begin{align*}
+E[M'_0] &= E[M'_{\tau (u)\wedge t}] \\
+&=E[M'_{\tau (u)};{\tau (u)}\leq t]+E[M'_t;\tau (u)>t]\\
+&\geq E[e^{-LR(\tau (u))}|\tau (u)\leq t]  \times P(\tau (u)\leq t)\\
+&\geq P(\tau (u)\leq t)  \hspace{2cm}since\quad R(\tau (u))\leq 0
+\end{align*}
+$$P(\tau (u)<\infty)=\lim_{t \to \infty} P(\tau (u)\leq t)\leq E[M_0]=e^{-Lu}$$
+\end{proof}
+Although the martingale technique makes the approximation very easy, one must have to aware that if the claim size distribution is heavy-tailed, $\hat{m}_U(s)$ does not exist for s>0 and the martingale technique can not be used.
+\end{document}

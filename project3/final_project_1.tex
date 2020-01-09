@@ -1,0 +1,143 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Thin Sectioned Essay
+% LaTeX Template
+% Version 1.0 (3/8/13)
+%
+% This template has been downloaded from:
+% http://www.LaTeXTemplates.com
+%
+% Original Author:
+% Nicolas Diaz (nsdiaz@uc.cl) with extensive modifications by:
+% Vel (vel@latextemplates.com)
+%
+% License:
+% CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass[a4paper, 11pt]{article} % Font size (can be 10pt, 11pt or 12pt) and paper size (remove a4paper for US letter paper)
+\usepackage{listings}   
+\usepackage{amsmath}
+\usepackage{wrapfig} % Allows in-line images
+\usepackage{graphicx}
+\usepackage{mathpazo} % Use the Palatino font
+\usepackage[T1]{fontenc} % Required for accented characters
+\usepackage{floatrow}
+\usepackage{lmodern}
+\usepackage{graphicx}
+\usepackage{amsthm}
+\usepackage{float}
+\newtheorem*{theorem*}{Theorem}
+\newtheorem*{corollary*}{Corollary}
+\usepackage{lingmacros}
+\usepackage{subfiles}
+\linespread{1.05} % Change line spacing here, Palatino benefits from a slight increase by default
+\newtheorem{theorem}{Theorem}
+\newtheorem{observation}[theorem]{Observation}
+\newtheorem*{remark}{Remark}
+\newtheorem*{definition}{Definition}
+\newtheorem*{property}{Property}
+\makeatletter
+\renewcommand\@biblabel[1]{\textbf{#1.}} % Change the square brackets for each bibliography item from '[1]' to '1.'
+\renewcommand{\@listI}{\itemsep=0pt} % Reduce the space between items in the itemize and enumerate environments and the bibliography
+
+\renewcommand{\maketitle}{ % Customize the title - do not edit title and author name here, see the TITLE block below
+\begin{flushright} % Right align
+{\LARGE\@title} % Increase the font size of the title
+
+\vspace{50pt} % Some vertical space between the title and author name
+
+{\large\@author} % Author name
+\\\@date % Date
+
+\vspace{40pt} % Some vertical space between the author block and abstract
+\end{flushright}
+}
+
+%----------------------------------------------------------------------------------------
+%	TITLE
+%----------------------------------------------------------------------------------------
+
+\title{\textbf{The Relationship Between\\
+Empirical Process and Gaussian Process: An Example in Kolmogrov-Smirov Test}\\ % Title
+Stochostic Process: Final Project} % Subtitle
+
+\author{\textsc{Chi-Ning,Chou} % Author
+\\{\textit{PROFESSOR RAOUL NORMAND }}} % Institution
+
+\date{\today} % Date
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+
+\maketitle % Print the title section
+
+%----------------------------------------------------------------------------------------
+%	ABSTRACT AND KEYWORDS
+%----------------------------------------------------------------------------------------
+
+%\renewcommand{\abstractname}{Summary} % Uncomment to change the name of the abstract to something else
+
+\begin{abstract}
+Kolmogrov-Smirov test is a famous non-parametric goodness of fitting test. The Kolmogrov statistics: $D_n = \sup_{x\in \mathcal{R}}|\hat{F}_n(x)-F(x)|$ is the central idea in this statistical test. $D_n$ is a {\it distribution-free} statistics. The convergence of $D_n$ provides us a way to see that whether a source is sampled from the guessing distribution. Moreover, since the probability distribution of $D_n$ will converge to that of a Brownian Bridge, the confidence interval can be calculated.
+
+A distribution-free statistics, the Kolmogrov statistics, of empirical distribution converging to the Brownian Bridge is so amazing that we further dig into the relationship between empirical process and Gaussian process. Looking forward to find some interesting behaviour among them.
+\end{abstract}
+
+\hspace*{5,6mm}\textit{Keywords:} Kolmogrov-Smirov test, Empirical Process, Brownian Bridge, Gaussian Process % Keywords
+
+\vspace{30pt} % Some vertical space between the abstract and first section
+
+%----------------------------------------------------------------------------------------
+%	ESSAY BODY
+%----------------------------------------------------------------------------------------
+
+% outline
+\tableofcontents
+\setcounter{tocdepth}{1}
+
+%----------------------------------------------------------------------------------------
+%	Section 1: EMpirical Processs Theory
+%----------------------------------------------------------------------------------------
+\section{Empirical Process Theory}
+\subfile{section1_empirical_process_theory}
+
+%----------------------------------------------------------------------------------------
+%	Section 2: Gaussian Process
+%----------------------------------------------------------------------------------------
+\section{Gaussian Process}
+\subfile{section2_gaussian_process}
+
+
+%----------------------------------------------------------------------------------------
+%	Section 3: Kolmogrov-Smirov Test
+%----------------------------------------------------------------------------------------
+\section{Kolmogrov-Smirov Test}
+\subfile{section3_kolmogrov_smirov_test}
+
+
+
+%------------------------------------------------
+
+
+\bibliographystyle{plain}
+\begin{thebibliography}{9}
+
+\bibitem{CC}
+\emph{Crypto Corner},
+http://crypto.interactive-maths.com
+\bibitem{HG}
+\emph{The Hunger Games}, Suzanne Collins. 2008. Scholastic. U.S.
+https://sites.google.com/site/the74thhungergamesbyced/download-the-hunger-games-trilogy-e-book-txt-file
+\end{thebibliography}
+
+\section*{Appendix}
+The code of this project can be found on Github: https://github.com/jerrychou82/MCMC\_Break\_Stream\_Cipher
+It's welcome to discuss the code with me!
+
+\end{document}

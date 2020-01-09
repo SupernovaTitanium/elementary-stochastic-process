@@ -1,0 +1,53 @@
+\contentsline {section}{\numberline {1}Ruin Theory}{2}
+\contentsline {paragraph}{}{2}
+\contentsline {subsection}{\numberline {1.1}Original question}{2}
+\contentsline {paragraph}{}{2}
+\contentsline {paragraph}{}{2}
+\contentsline {subsection}{\numberline {1.2}Risk processes}{3}
+\contentsline {paragraph}{}{3}
+\contentsline {subsubsection}{\numberline {1.2.1}Definition of the model}{3}
+\contentsline {paragraph}{}{3}
+\contentsline {paragraph}{}{4}
+\contentsline {paragraph}{}{4}
+\contentsline {subsubsection}{\numberline {1.2.2}Compound Distribution}{5}
+\contentsline {paragraph}{}{5}
+\contentsline {subsubsection}{\numberline {1.2.3}Cram\`er-Lundberg Model}{7}
+\contentsline {paragraph}{}{7}
+\contentsline {subsection}{\numberline {1.3}Limiting behaviour}{8}
+\contentsline {paragraph}{}{8}
+\contentsline {section}{\numberline {2}Ultimate Ruin}{9}
+\contentsline {subsection}{\numberline {2.1}Integral equation of ultimate ruin}{10}
+\contentsline {paragraph}{}{10}
+\contentsline {subsection}{\numberline {2.2}Pollaczeck-Khinchine formula}{12}
+\contentsline {paragraph}{}{12}
+\contentsline {subsection}{\numberline {2.3}Martingale Approximation}{14}
+\contentsline {section}{\numberline {3}Connection Between Queuing Theory}{16}
+\contentsline {subsection}{\numberline {3.1}A Dual Queueing Model}{16}
+\contentsline {paragraph}{}{16}
+\contentsline {subsubsection}{\numberline {3.1.1}Queuing model and waiting time}{16}
+\contentsline {paragraph}{}{16}
+\contentsline {paragraph}{}{17}
+\contentsline {subsubsection}{\numberline {3.1.2}Elegant relation}{17}
+\contentsline {paragraph}{}{18}
+\contentsline {paragraph}{}{18}
+\contentsline {paragraph}{}{18}
+\contentsline {paragraph}{}{18}
+\contentsline {paragraph}{}{18}
+\contentsline {paragraph}{}{19}
+\contentsline {paragraph}{}{19}
+\contentsline {subsection}{\numberline {3.2}M/G/1 Queue}{19}
+\contentsline {paragraph}{}{19}
+\contentsline {subsubsection}{\numberline {3.2.1}Basic definition and property}{20}
+\contentsline {paragraph}{}{20}
+\contentsline {paragraph}{}{21}
+\contentsline {paragraph}{}{22}
+\contentsline {subsubsection}{\numberline {3.2.2}Pollaczek-Khinchine formula revisited}{23}
+\contentsline {subsection}{\numberline {3.3}Ruin and Queuing Theory}{26}
+\contentsline {paragraph}{}{26}
+\contentsline {paragraph}{}{26}
+\contentsline {section}{\numberline {4}Perturbed Risk Process }{29}
+\contentsline {section}{\numberline {5}Simulation}{29}
+\contentsline {section}{\numberline {6}Acknowledgement}{29}
+\contentsline {paragraph}{}{29}
+\contentsline {section}{\numberline {7}Appendix}{29}
+\contentsline {paragraph}{}{29}

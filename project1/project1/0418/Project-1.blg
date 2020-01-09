@@ -1,0 +1,13 @@
+This is BibTeX, Version 0.99dThe top-level auxiliary file: Project-1.aux
+The style file: unsrt.bst
+Illegal, another \bibdata command---line 51 of file Project-1.aux
+ : \bibdata
+ :         {Thesis}
+I'm skipping whatever remains of this command
+Illegal, another \bibstyle command---line 52 of file Project-1.aux
+ : \bibstyle
+ :          {plain}
+I'm skipping whatever remains of this command
+Database file #1: sample.bib
+Warning--I didn't find a database entry for "MARTIN"
+(There were 2 error messages)

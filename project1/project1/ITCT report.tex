@@ -1,0 +1,217 @@
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+
+\documentclass{article}
+
+\usepackage{fancyhdr} % Required for custom headers
+\usepackage{lastpage} % Required to determine the last page for the footer
+\usepackage{extramarks} % Required for headers and footers
+\usepackage[usenames,dvipsnames]{color} % Required for custom colors
+\usepackage{graphicx} % Required to insert images
+\usepackage{listings} % Required for insertion of code
+\usepackage{courier} % Required for the courier font
+\usepackage{lipsum} % Used for inserting dummy 'Lorem ipsum' text into the template
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{floatrow}
+\usepackage{lmodern}
+\usepackage{graphicx}
+\usepackage{amsmath}
+% Margins
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in
+
+\linespread{1.1} % Line spacing
+
+% Set up the header and footer
+\pagestyle{fancy}
+\lhead{\hmwkClass} % Top left header
+\rhead{\hmwkTitle}
+\lfoot{\lastxmark} % Bottom left footer
+\cfoot{} % Bottom center footer
+\rfoot{Page\ \thepage\ of\ \protect\pageref{LastPage}} % Bottom right footer
+\renewcommand\headrulewidth{0.4pt} % Size of the header rule
+\renewcommand\footrulewidth{0.4pt} % Size of the footer rule
+
+\setlength\parindent{0pt} % Removes all indentation from paragraphs
+
+%----------------------------------------------------------------------------------------
+%	CODE INCLUSION CONFIGURATION
+%----------------------------------------------------------------------------------------
+
+\definecolor{MyDarkGreen}{rgb}{0.0,0.4,0.0} % This is the color used for comments
+\lstloadlanguages{Perl} % Load Perl syntax for listings, for a list of other languages supported see: ftp://ftp.tex.ac.uk/tex-archive/macros/latex/contrib/listings/listings.pdf
+\lstset{language=Perl, % Use Perl in this example
+        frame=single, % Single frame around code
+        basicstyle=\small\ttfamily, % Use small true type font
+        keywordstyle=[1]\color{Blue}\bf, % Perl functions bold and blue
+        keywordstyle=[2]\color{Purple}, % Perl function arguments purple
+        keywordstyle=[3]\color{Blue}\underbar, % Custom functions underlined and blue
+        identifierstyle=, % Nothing special about identifiers                                         
+        commentstyle=\usefont{T1}{pcr}{m}{sl}\color{MyDarkGreen}\small, % Comments small dark green courier font
+        stringstyle=\color{Purple}, % Strings are purple
+        showstringspaces=false, % Don't put marks in string spaces
+        tabsize=5, % 5 spaces per tab
+        %
+        % Put standard Perl functions not included in the default language here
+        morekeywords={rand},
+        %
+        % Put Perl function parameters here
+        morekeywords=[2]{on, off, interp},
+        %
+        % Put user defined functions here
+        morekeywords=[3]{test},
+       	%
+        morecomment=[l][\color{Blue}]{...}, % Line continuation (...) like blue comment
+        numbers=left, % Line numbers on left
+        firstnumber=1, % Line numbers start with line 1
+        numberstyle=\tiny\color{Blue}, % Line numbers are blue and small
+        stepnumber=5 % Line numbers go in steps of 5
+}
+
+% Creates a new command to include a perl script, the first parameter is the filename of the script (without .pl), the second parameter is the caption
+\newcommand{\perlscript}[2]{
+\begin{itemize}
+\item[]\lstinputlisting[caption=#2,label=#1]{#1.pl}
+\end{itemize}
+}
+
+%----------------------------------------------------------------------------------------
+%	DOCUMENT STRUCTURE COMMANDS
+%	Skip this unless you know what you're doing
+%----------------------------------------------------------------------------------------
+
+% Header and footer for when a page split occurs within a problem environment
+\newcommand{\enterProblemHeader}[1]{
+\nobreak\extramarks{#1}{#1 continued on next page\ldots}\nobreak
+\nobreak\extramarks{#1 (continued)}{#1 continued on next page\ldots}\nobreak
+}
+
+% Header and footer for when a page split occurs between problem environments
+\newcommand{\exitProblemHeader}[1]{
+\nobreak\extramarks{#1 (continued)}{#1 continued on next page\ldots}\nobreak
+\nobreak\extramarks{#1}{}\nobreak
+}
+
+\setcounter{secnumdepth}{0} % Removes default section numbers
+\newcounter{homeworkProblemCounter} % Creates a counter to keep track of the number of problems
+
+\newcommand{\homeworkProblemName}{}
+\newenvironment{homeworkProblem}[1][Problem \arabic{homeworkProblemCounter}]{ % Makes a new environment called homeworkProblem which takes 1 argument (custom name) but the default is "Problem #"
+\stepcounter{homeworkProblemCounter} % Increase counter for number of problems
+\renewcommand{\homeworkProblemName}{#1} % Assign \homeworkProblemName the name of the problem
+\section{\homeworkProblemName} % Make a section in the document with the custom problem count
+\enterProblemHeader{\homeworkProblemName} % Header and footer within the environment
+}{
+\exitProblemHeader{\homeworkProblemName} % Header and footer after the environment
+}
+
+\newcommand{\problemAnswer}[1]{ % Defines the problem answer command with the content as the only argument
+\noindent\framebox[\columnwidth][c]{\begin{minipage}{0.98\columnwidth}#1\end{minipage}} % Makes the box around the problem answer and puts the content inside
+}
+
+\newcommand{\homeworkSectionName}{}
+\newenvironment{homeworkSection}[1]{ % New environment for sections within homework problems, takes 1 argument - the name of the section
+\renewcommand{\homeworkSectionName}{#1} % Assign \homeworkSectionName to the name of the section from the environment argument
+\subsection{\homeworkSectionName} % Make a subsection with the custom name of the subsection
+\enterProblemHeader{\homeworkProblemName\ [\homeworkSectionName]} % Header and footer within the environment
+}{
+\enterProblemHeader{\homeworkProblemName} % Header and footer after the environment
+}
+
+%----------------------------------------------------------------------------------------
+%	NAME AND CLASS SECTION
+%----------------------------------------------------------------------------------------
+
+\newcommand{\hmwkTitle}{Permutation entropy and its applications} % Assignment title
+\newcommand{\hmwkDueDate}{Monday,\ April\ 27,\ 2015} % Due date
+\newcommand{\hmwkClass}{ITCT} % Course/class
+\newcommand{\hmwkClassTime}{} % Class/lecture time
+\newcommand{\hmwkClassInstructor}{Ja-Ling Wu} % Teacher/lecturer
+\newcommand{\hmwkName}{B01902065, B01902080} % Your name
+\newcommand{\hmwkID}{B01902065} % Student ID
+
+%----------------------------------------------------------------------------------------
+\title{Report: Permutation Entropy and Its Applications}
+\date{April 27, 2015}
+\author{b01902065 \quad b01902080}
+
+%----------------------------------------------------------------------------------------
+
+\begin{document}
+
+\maketitle
+%----------------------------------------------------------------------------------------
+%	SECTION 1: 
+%----------------------------------------------------------------------------------------
+
+\paragraph{}
+In this article, the author first mentions that there are several drawbacks in Shannon's entropy. To begin with, it neglects temporal relationships between the values of the time series. Moreover, Shannon entropy measures suppose some prior knowledge about the system. Seen as the last problem, is it designed only for linear system and have poor performance on highly non-linear chaotic regimes.
+Based on these reasons, the author introduces another entropy called {\it Permutation Entropy} to solve problems above.   
+\paragraph{}
+Given a time series X=\{$x_t$ : t=1,...,N\},and the embedding dimension D, we can construct a vector S
+\begin{align*} 
+s\mapsto (x_s,x_{s+1},...,x_{s+(D-2)},x_{s+(D-1)})
+\end{align*}
+\paragraph{}
+To this vector, an ordinal pattern is defined as the {\it Permutation Entropy} $\pi$ =(r0r1...$r_{D-1}$) of (01...D-1) which fulfills 
+\begin{align*} 
+x_{s+r_0} \leq x_{s+r_1}\leq...\leq x_{s+r_{D-2}} \leq x_{s+r_{D-1}}
+\end{align*}
+\paragraph{}
+Take a numerical example X={3,1,4,1,5,9}. For D = 3, the vector of values corresponding
+to s = 1 is (3, 1, 4) and the corresponding
+permutation pattern is then $\pi$ = (102). For s = 2, the vector of values is (1, 4, 1), leading to the
+permutation $\pi$ = (021),with two equal values ordered according to the time of their appearance.The vector s can be further extended by considering an embedding delay $\tau$:
+\begin{align*} 
+s\mapsto (x_s,x_{s+\tau},...,x_{s+\tau (D-2)},x_{s+\tau (D-1)})
+\end{align*} 
+which can map the dynamics of the system at different temporal resolutions.
+\paragraph{}
+The {\it Permutation Entropy}, PE, and {\it normalized Permutation Entropy }, $PE_{norm}$, are then defined as :
+\begin{align*} 
+&PE=-\sum_{i=1}^{D!}\pi_i 
+ \ln \pi_i \\ &PE_{norm}=-\frac{1}{\log _2 D!}\sum_{i=1}^{D!}\pi_i \ln \pi_i
+\end{align*} 
+where $\pi_i$ are the frequencies associated with the i possible permutation patterns. Here we notice that there are D! possible permutation patterns. However, some patterns never appears due to two reasons: the finite length of any real time series and the dynamical nature of the systems generating the time series.These patterns are called {\it forbidden patterns}. With the concept of {\it forbidden patterns} we can get relevant knowledge about the underlying system and distinguish determinism from pure randomness in finite time series contaminated with observational white noise.  
+
+
+\paragraph{}
+\paragraph{}
+The author then mentioned the applications of {\it Permutation Entropy} in biomedical and econophysics system. Since biological systems are typically characterized by complex dynamics, associated with highly stereotyped patterns of activity, and required a certain degree of randomness and lower computation time. PE can help to do the classification, detection, prediction and evolution of some disease (e.g.,Epileptic seizure). In econophysics applications, since an efficient market should be perfectly unpredictable, PE can use to quantitate the inefficiency of the market.
+\paragraph{}
+In conclusion, there are several advantage of PE: 
+\begin{itemize}
+\item Discrimination of chaotic from random dynamics
+\item Addressing a number of important problems in time series analysis
+\item Extended to multi-variate and multi-scale systems
+\item Relatively lower computational cost
+\end{itemize}
+\paragraph{}
+However, the author also stated some drawbacks of PE : 
+\begin{itemize}
+\item Neglecting the magnitude of the difference between neighboring values 
+
+\item Neglecting  equal values and consider only inequalities between the data
+
+\end{itemize}
+
+
+\paragraph{}
+In this article, we learned that Permutation Entropy has lot more power than Shannon’s Entropy since it considers the relationships between elements in a given time series. Due to this property, PE can be extensively used in real-time systems that require not only processing complicated dynamic data flows, but also maintaining relatively lower computational time. For example, some shopping malls in Europe start to use the face detection technique to keep track of customers' basic information(e.g., user profile, shopping behavior, purchase history...). Some popular troupes even use smile detection technique to calculate how many times audience laugh during their performance and charge the audience based on this information! With the use of PE, the face and smile detection systems can be more robust and efficient since it would be easier to do the classification, detection, and prediction of each customer and audience in real time.
+\paragraph{}
+Applying PE in stock market analysis is another application we are interested in. Since the float of each stock's value is highly correlated to the change of multiple time series and the value of other homogeneous stocks, PE can be used to calculate the dependency between different time series and stocks, and thus do more precise classification and prediction based on the temporal information (which means PE may be able to help us become a billionaire in stock market, so there is no need for ITCT students to analyze the software complexity with entropy anymore!).
+\paragraph{}
+The article has given us inspiration to apply PE in different fields and systems, and we hope that we can try more to implement this idea in the issue we are more interested in. We notice that many other teams mentioned the extensions and applications of entropy as well(e.g., Tsallis Entropy for Geometry Simplification, Compressive sensing using the modified entropy functional, Entropy in Taiwan stock, An Entropy-Based Measure of Software Complexity...), and some of the topics are quite intriguing for us to do further studies and implementation. With the use of PE or other novel entropy based on the concept of PE, we believe that more and more valuable applications can be invented or improved in the future.
+ 
+
+%----------------------------------------------------------------------------------------
+
+
+
+\end{document}
